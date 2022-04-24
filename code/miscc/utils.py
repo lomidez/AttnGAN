@@ -242,6 +242,9 @@ def build_super_images2(real_imgs, captions, cap_lens, ixtoword,
             one_map *= 255
             #
             PIL_im = Image.fromarray(np.uint8(img))
+            #########################################################################################
+            print(one_map)
+            print(one_map.shape)
             PIL_att = Image.fromarray(np.uint8(one_map))
             merged = \
                 Image.new('RGBA', (vis_size, vis_size), (0, 0, 0, 0))
