@@ -228,9 +228,11 @@ def build_super_images2(real_imgs, captions, cap_lens, ixtoword,
             mask = one_map > thresh
             one_map = one_map * mask
             if (vis_size // att_sze) > 1:
-                one_map = \
-                    skimage.transform.pyramid_expand(one_map, sigma=20,
-                                                     upscale=vis_size // att_sze)
+####################################################################################################
+                one_map = skimage.transform.pyramid_expand(one_map, sigma=20, upscale=vis_size // att_sze, multichannel=True)
+#                 one_map = \
+#                     skimage.transform.pyramid_expand(one_map, sigma=20,
+#                                                      upscale=vis_size // att_sze)
             minV = one_map.min()
             maxV = one_map.max()
             one_map = (one_map - minV) / (maxV - minV)
@@ -243,8 +245,8 @@ def build_super_images2(real_imgs, captions, cap_lens, ixtoword,
             #
             PIL_im = Image.fromarray(np.uint8(img))
             #########################################################################################
-            print(one_map)
-            print(one_map.shape)
+#             print(one_map)
+#             print(one_map.shape)
             PIL_att = Image.fromarray(np.uint8(one_map))
             merged = \
                 Image.new('RGBA', (vis_size, vis_size), (0, 0, 0, 0))
