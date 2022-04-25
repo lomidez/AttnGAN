@@ -126,7 +126,7 @@ if __name__ == "__main__":
     imsize = cfg.TREE.BASE_SIZE * (2 ** (cfg.TREE.BRANCH_NUM - 1))
     image_transform = transforms.Compose([
         ##################################################################
-        transforms.Resize(int(imsize * 76 / 64))
+        transforms.Resize(int(imsize * 76 / 64)),
         #transforms.Scale(int(imsize * 76 / 64)),
         transforms.RandomCrop(imsize),
         transforms.RandomHorizontalFlip()])
